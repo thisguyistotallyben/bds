@@ -1,0 +1,35 @@
+/*
+    Ben Design System
+
+    All Formatting
+*/
+
+
+@import "./container.scss";
+@import "./button.scss";
+@import "./color.scss";
+@import "./layout.scss";
+@import "./spacing.scss";
+@import "./sugar.scss";
+
+
+/* EXTRA FORMATTING --------------------------------- */
+
+.bds-x-scrollable {
+    overflow-x: auto;
+}
+
+.bds-y-scrollable {
+    overflow-y: auto;
+}
+
+.bds-header-container {
+    display: flex;
+    align-items: center;
+    height: 2.5em;
+    padding: 0.5em;
+    background-color: #eaeaea;
+    border-bottom-style: solid;
+    border-bottom-color: #afafaf;
+    border-bottom-width: 0.05em;
+}
