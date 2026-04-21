@@ -1,0 +1,69 @@
+// scss/_cards.scss
+@import "variables";
+
+.bds-card {
+  background-color: var(--bds-bg-surface);
+  border: 1px solid var(--bds-border-color);
+  border-radius: var(--bds-radius-md);
+  overflow: hidden;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    border-color: #444;
+    background-color: #252525;
+  }
+
+  &__thumbnail {
+    aspect-ratio: 16 / 10;
+    background-color: #000;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__badge {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: var(--bds-radius-sm);
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    color: var(--bds-text-muted);
+    z-index: 1;
+
+    &--accent {
+      color: var(--bds-accent);
+      background-color: rgba(255, 204, 0, 0.1);
+    }
+  }
+
+  &__content {
+    padding: 0.75rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  // Large container section
+  &--well {
+    background-color: var(--bds-bg-well);
+    padding: 1.5rem;
+    border-radius: var(--bds-radius-lg);
+    border: 1px solid var(--bds-border-color);
+  }
+}

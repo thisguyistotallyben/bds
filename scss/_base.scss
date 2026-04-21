@@ -1,0 +1,27 @@
+// scss/_base.scss
+@import "variables";
+
+.bds-body {
+  background-color: var(--bds-bg-deep);
+  color: var(--bds-text-main);
+  margin: 0;
+  font-family: $bds-font-family;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: $bds-font-size-base;
+}
+
+.bds-heading {
+  letter-spacing: -0.015em;
+  margin: 0;
+  color: var(--bds-text-main);
+
+  &--1 { font-size: 2.2rem; font-weight: 700; }
+  &--2 { font-size: 1.8rem; font-weight: 700; }
+  &--3 { font-size: 1.1rem; font-weight: 600; }
+}
+
+.bds-text {
+  &--muted { color: var(--bds-text-muted); }
+  &--small { font-size: 0.85rem; }
+}

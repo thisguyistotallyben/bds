@@ -1,0 +1,56 @@
+// scss/_layout.scss
+@import "variables";
+
+.bds-layout {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+
+  &__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: var(--bds-bg-deep);
+  }
+
+  &__main {
+    flex: 1;
+    width: 100%;
+    overflow-y: auto;
+    padding: 3rem 2rem;
+  }
+}
+
+.bds-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  
+  &--narrow { max-width: 800px; }
+  &--wide { max-width: 1600px; }
+}
+
+.bds-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--bds-spacing-standard);
+
+  &--tight { gap: var(--bds-spacing-tight); }
+}
+
+.bds-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.bds-flex {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  
+  &--between { justify-content: space-between; }
+  &--end { align-items: flex-end; }
+}

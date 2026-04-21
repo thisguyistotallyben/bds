@@ -1,0 +1,41 @@
+// scss/_variables.scss
+
+// Colors
+$bds-color-bg-deep: #0d0d0d;
+$bds-color-bg-surface: #1a1a1a;
+$bds-color-bg-well: #121212;
+$bds-color-accent: #ffcc00;
+$bds-color-text-main: #e0e0e0;
+$bds-color-text-muted: #888888;
+$bds-color-border: #2a2a2a;
+$bds-color-success: #4ade80;
+$bds-color-error: #ff4444;
+
+// Radii
+$bds-radius-lg: 12px;
+$bds-radius-md: 8px;
+$bds-radius-sm: 4px;
+
+// Spacing
+$bds-spacing-tight: 1rem;
+$bds-spacing-standard: 1.5rem;
+
+// Typography
+$bds-font-family: 'Inter', -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+$bds-font-size-base: 14px;
+
+// CSS Variables for runtime portability
+:root {
+  --bds-bg-deep: #{$bds-color-bg-deep};
+  --bds-bg-surface: #{$bds-color-bg-surface};
+  --bds-bg-well: #{$bds-color-bg-well};
+  --bds-accent: #{$bds-color-accent};
+  --bds-text-main: #{$bds-color-text-main};
+  --bds-text-muted: #{$bds-color-text-muted};
+  --bds-border-color: #{$bds-color-border};
+  --bds-radius-lg: #{$bds-radius-lg};
+  --bds-radius-md: #{$bds-radius-md};
+  --bds-radius-sm: #{$bds-radius-sm};
+  --bds-spacing-standard: #{$bds-spacing-standard};
+  --bds-spacing-tight: #{$bds-spacing-tight};
+}
