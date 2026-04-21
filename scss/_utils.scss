@@ -1,5 +1,5 @@
 // scss/_utils.scss
-@import "variables";
+@use "variables" as *;
 
 .bds-progress {
   height: 8px;

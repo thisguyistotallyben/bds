@@ -1,0 +1,26 @@
+{
+  "name": "bds",
+  "version": "1.0.0",
+  "description": "A design system built with SCSS, compilable to CSS",
+  "main": "index.js",
+  "scripts": {
+    "build:css": "sass scss/bds.scss css/bds.css",
+    "watch:css": "sass scss/bds.scss css/bds.css --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thisguyistotallyben/bds.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/thisguyistotallyben/bds/issues"
+  },
+  "homepage": "https://github.com/thisguyistotallyben/bds#readme",
+  "devDependencies": {
+    "sass": "^1.99.0"
+  }
+}

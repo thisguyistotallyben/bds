@@ -1,5 +1,5 @@
 // scss/_cards.scss
-@import "variables";
+@use "variables";
 
 .bds-card {
   background-color: var(--bds-bg-surface);
