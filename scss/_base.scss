@@ -1,5 +1,5 @@
 // scss/_base.scss
-@import "variables";
+@use "variables" as *;
 
 .bds-body {
   background-color: var(--bds-bg-deep);

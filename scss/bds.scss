@@ -1,8 +1,8 @@
 // scss/bds.scss
-@import "variables";
-@import "base";
-@import "buttons";
-@import "cards";
-@import "layout";
-@import "forms";
-@import "utils";
+@use "variables";
+@use "base";
+@use "buttons";
+@use "cards";
+@use "layout";
+@use "forms";
+@use "utils";
