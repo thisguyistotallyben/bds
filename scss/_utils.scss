@@ -1,0 +1,31 @@
+// scss/_utils.scss
+@import "variables";
+
+.bds-progress {
+  height: 8px;
+  background-color: #000;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+  
+  &__bar {
+    height: 100%;
+    background-color: var(--bds-accent);
+    transition: width 0.3s ease;
+  }
+}
+
+.bds-divider {
+  height: 1px;
+  background-color: var(--bds-border-color);
+  margin: 1.5rem 0;
+  border: none;
+}
+
+.bds-status {
+  font-size: 0.9rem;
+  font-weight: 500;
+  
+  &--success { color: $bds-color-success; }
+  &--error { color: $bds-color-error; }
+}

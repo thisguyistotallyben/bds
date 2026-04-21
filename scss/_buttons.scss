@@ -1,0 +1,55 @@
+// scss/_buttons.scss
+@import "variables";
+
+.bds-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--bds-radius-sm);
+  font-weight: 600;
+  font-family: inherit;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  background: none;
+  color: var(--bds-text-main);
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  &:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  // Modifiers
+  &--accent {
+    background-color: var(--bds-accent);
+    color: #000;
+  }
+
+  &--secondary {
+    border-color: var(--bds-border-color);
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+      border-color: var(--bds-text-muted);
+    }
+  }
+
+  &--small {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+
+  &--text {
+    padding: 0;
+    color: var(--bds-text-muted);
+    background: none;
+    border: none;
+    &:hover { color: var(--bds-accent); }
+  }
+}
