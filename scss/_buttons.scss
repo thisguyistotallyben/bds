@@ -52,4 +52,24 @@
     border: none;
     &:hover { color: var(--bds-accent); }
   }
+
+  &--success {
+    border-color: rgba(74, 222, 128, 0.2);
+    background-color: rgba(74, 222, 128, 0.05);
+    color: var(--bds-success);
+    &:hover {
+      background-color: rgba(74, 222, 128, 0.1);
+      border-color: var(--bds-success);
+    }
+  }
+
+  &--danger {
+    border-color: rgba(255, 68, 68, 0.2);
+    background-color: rgba(255, 68, 68, 0.05);
+    color: var(--bds-danger);
+    &:hover {
+      background-color: rgba(255, 68, 68, 0.1);
+      border-color: var(--bds-danger);
+    }
+  }
 }

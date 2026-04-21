@@ -38,4 +38,6 @@ $bds-font-size-base: 14px;
   --bds-radius-sm: #{$bds-radius-sm};
   --bds-spacing-standard: #{$bds-spacing-standard};
   --bds-spacing-tight: #{$bds-spacing-tight};
+  --bds-success: #{$bds-color-success};
+  --bds-danger: #{$bds-color-error};
 }

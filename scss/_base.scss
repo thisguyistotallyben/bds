@@ -1,6 +1,14 @@
 // scss/_base.scss
 @use "variables" as *;
 
+* {
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+}
+
 .bds-body {
   background-color: var(--bds-bg-deep);
   color: var(--bds-text-main);
@@ -9,12 +17,14 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: $bds-font-size-base;
+  line-height: 1.5;
 }
 
 .bds-heading {
   letter-spacing: -0.015em;
   margin: 0;
   color: var(--bds-text-main);
+  line-height: 1.2;
 
   &--1 { font-size: 2.2rem; font-weight: 700; }
   &--2 { font-size: 1.8rem; font-weight: 700; }
