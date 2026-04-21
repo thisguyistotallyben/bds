@@ -11,6 +11,16 @@
   --bds-radius-sm: 4px;
   --bds-spacing-standard: 1.5rem;
   --bds-spacing-tight: 1rem;
+  --bds-success: #4ade80;
+  --bds-danger: #ff4444;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
 }
 
 .bds-body {
@@ -21,12 +31,14 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 14px;
+  line-height: 1.5;
 }
 
 .bds-heading {
   letter-spacing: -0.015em;
   margin: 0;
   color: var(--bds-text-main);
+  line-height: 1.2;
 }
 .bds-heading--1 {
   font-size: 2.2rem;
@@ -94,6 +106,24 @@
 }
 .bds-button--text:hover {
   color: var(--bds-accent);
+}
+.bds-button--success {
+  border-color: rgba(74, 222, 128, 0.2);
+  background-color: rgba(74, 222, 128, 0.05);
+  color: var(--bds-success);
+}
+.bds-button--success:hover {
+  background-color: rgba(74, 222, 128, 0.1);
+  border-color: var(--bds-success);
+}
+.bds-button--danger {
+  border-color: rgba(255, 68, 68, 0.2);
+  background-color: rgba(255, 68, 68, 0.05);
+  color: var(--bds-danger);
+}
+.bds-button--danger:hover {
+  background-color: rgba(255, 68, 68, 0.1);
+  border-color: var(--bds-danger);
 }
 
 .bds-card {
@@ -175,6 +205,27 @@
   padding: 3rem 2rem;
 }
 
+.bds-header {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  background-color: var(--bds-bg-deep);
+  border-bottom: 1px solid var(--bds-border-color);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.bds-sidebar__header {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  padding: 0 1.5rem;
+  border-bottom: 1px solid var(--bds-border-color);
+}
+
 .bds-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -212,6 +263,70 @@
 }
 .bds-flex--end {
   align-items: flex-end;
+}
+
+.bds-sidebar {
+  width: 260px;
+  background-color: var(--bds-bg-well);
+  border-right: 1px solid var(--bds-border-color);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.bds-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.bds-nav__header {
+  padding: 1.5rem 1rem 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--bds-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.bds-nav__item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  color: var(--bds-text-muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border-left: 2px solid transparent;
+}
+.bds-nav__item:hover {
+  background-color: rgba(255, 255, 255, 0.03);
+  color: var(--bds-text-main);
+}
+.bds-nav__item--active {
+  color: var(--bds-accent);
+  background-color: rgba(255, 204, 0, 0.08);
+  border-left-color: var(--bds-accent);
+}
+.bds-nav__item--active:hover {
+  background-color: rgba(255, 204, 0, 0.12);
+  color: var(--bds-accent);
+}
+.bds-nav__item .bds-nav__icon {
+  width: 1.25rem;
+  display: flex;
+  justify-content: center;
+  font-family: monospace;
+  font-size: 1.1rem;
+  opacity: 0.7;
+}
+.bds-nav__footer {
+  margin-top: auto;
+  padding: 1rem;
+  border-top: 1px solid var(--bds-border-color);
 }
 
 .bds-form-group {
@@ -274,6 +389,55 @@
 }
 .bds-status--error {
   color: #ff4444;
+}
+
+.bds-status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--bds-radius-sm);
+  transition: background-color 0.2s;
+}
+.bds-status-indicator:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+.bds-status-indicator__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.bds-status-indicator__dot--success {
+  background-color: var(--bds-success);
+  box-shadow: 0 0 8px var(--bds-success);
+}
+.bds-status-indicator__dot--error {
+  background-color: var(--bds-danger);
+}
+.bds-status-indicator__dot--warning {
+  background-color: var(--bds-accent);
+}
+.bds-status-indicator__dot--pulse {
+  animation: bds-pulse 1.5s infinite;
+}
+
+@keyframes bds-pulse {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 /*# sourceMappingURL=bds.css.map */

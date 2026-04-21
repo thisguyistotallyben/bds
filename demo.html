@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ben Design System - Demo & Debug</title>
+    <link rel="stylesheet" href="css/bds.css">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Extra styles for demo visibility */
+        .demo-section {
+            margin-bottom: 4rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--bds-border-color);
+        }
+        .demo-label {
+            display: block;
+            margin-bottom: 0.25rem;
+            font-family: monospace;
+            color: var(--bds-accent);
+            font-size: 0.75rem;
+            opacity: 0.8;
+        }
+        .color-swatch {
+            width: 100px;
+            height: 100px;
+            border-radius: var(--bds-radius-md);
+            margin-bottom: 0.5rem;
+            border: 1px solid var(--bds-border-color);
+        }
+        .logo-text {
+            font-weight: 700;
+            letter-spacing: -0.04em;
+        }
+    </style>
+</head>
+<body class="bds-body">
+    <div class="bds-layout">
+        <script>
+            // Active state handling and scroll-spy logic
+            document.addEventListener('DOMContentLoaded', () => {
+                const navItems = document.querySelectorAll('.bds-nav__item');
+                const sections = document.querySelectorAll('section[id], header[id]');
+                
+                // Update active state on click
+                navItems.forEach(item => {
+                    item.addEventListener('click', (e) => {
+                        navItems.forEach(i => i.classList.remove('bds-nav__item--active'));
+                        item.classList.add('bds-nav__item--active');
+                    });
+                });
+
+                // Scroll-spy: update active state as user scrolls
+                const observerOptions = {
+                    root: document.querySelector('.bds-layout__main'),
+                    threshold: 0.2,
+                    rootMargin: '-60px 0px -50% 0px'
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const id = entry.target.getAttribute('id');
+                            navItems.forEach(item => {
+                                item.classList.remove('bds-nav__item--active');
+                                if (item.getAttribute('href') === `#${id}`) {
+                                    item.classList.add('bds-nav__item--active');
+                                }
+                            });
+                        }
+                    });
+                }, observerOptions);
+
+                sections.forEach(section => observer.observe(section));
+
+                // Status Indicator Toggle Logic
+                const statusIndicator = document.querySelector('.bds-status-indicator');
+                const statusDot = statusIndicator.querySelector('.bds-status-indicator__dot');
+                const statusText = statusIndicator.querySelector('span:not(.bds-status-indicator__dot)');
+                let currentState = 'connected'; // connected, disconnected, connecting
+
+                statusIndicator.addEventListener('click', () => {
+                    if (currentState === 'connecting') return;
+
+                    if (currentState === 'connected') {
+                        // Switch to disconnected
+                        currentState = 'disconnected';
+                        statusDot.className = 'bds-status-indicator__dot bds-status-indicator__dot--error';
+                        statusText.textContent = 'Disconnected';
+                    } else {
+                        // Switch to connecting, then connected
+                        currentState = 'connecting';
+                        statusDot.className = 'bds-status-indicator__dot bds-status-indicator__dot--warning bds-status-indicator__dot--pulse';
+                        statusText.textContent = 'Connecting...';
+
+                        setTimeout(() => {
+                            currentState = 'connected';
+                            statusDot.className = 'bds-status-indicator__dot bds-status-indicator__dot--success';
+                            statusText.textContent = 'Connected';
+                        }, 1500);
+                    }
+                });
+            });
+        </script>
+        <!-- Sidebar Demo -->
+        <aside class="bds-sidebar">
+            <div class="bds-sidebar__header">
+                <a href="#top" style="text-decoration: none; color: inherit;">
+                    <h2 class="bds-heading bds-heading--3 logo-text">Ben<span style="color: var(--bds-accent);">DesignSystem</span></h2>
+                </a>
+            </div>
+            <nav class="bds-nav">
+                <div class="bds-nav__header">Components</div>
+                <a href="#colors" class="bds-nav__item bds-nav__item--active">
+                    <span class="bds-nav__icon">●</span>
+                    <span>Colors</span>
+                </a>
+                <a href="#typography" class="bds-nav__item">
+                    <span class="bds-nav__icon">T</span>
+                    <span>Typography</span>
+                </a>
+                <a href="#buttons" class="bds-nav__item">
+                    <span class="bds-nav__icon">B</span>
+                    <span>Buttons</span>
+                </a>
+                <a href="#cards" class="bds-nav__item">
+                    <span class="bds-nav__icon">□</span>
+                    <span>Cards</span>
+                </a>
+                <a href="#forms" class="bds-nav__item">
+                    <span class="bds-nav__icon">≡</span>
+                    <span>Forms & Inputs</span>
+                </a>
+                <a href="#utilities" class="bds-nav__item">
+                    <span class="bds-nav__icon">⚒</span>
+                    <span>Utilities</span>
+                </a>
+            </nav>
+        </aside>
+
+        <div class="bds-layout__content">
+            <header class="bds-header">
+                <div class="bds-flex">
+                    <span class="bds-heading bds-heading--3">CSS styles for Ben-related projects</span>
+                </div>
+                <div class="bds-status-indicator">
+                    <span class="bds-status-indicator__dot bds-status-indicator__dot--success"></span>
+                    <span class="bds-text--small">Connected</span>
+                </div>
+            </header>
+            <main class="bds-layout__main">
+                <div class="bds-container">
+                    
+                    <header id="top" class="demo-section">
+                        <div class="bds-flex bds-flex--between">
+                            <div class="bds-stack--tight">
+                                <h1 class="bds-heading bds-heading--1">Ben Design System</h1>
+                                <p class="bds-text--muted">A clean, dark-themed component library for rapid development.</p>
+                            </div>
+                        </div>
+                    </header>
+
+                    <!-- Colors -->
+                    <section id="colors" class="demo-section">
+                        <div class="bds-stack">
+                            <h2 class="bds-heading bds-heading--2">Colors</h2>
+                            <div class="bds-grid" style="grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));">
+                                <div>
+                                    <div class="color-swatch" style="background-color: var(--bds-bg-deep);"></div>
+                                    <span class="bds-text--small bds-text--muted">--bds-bg-deep</span>
+                                </div>
+                                <div>
+                                    <div class="color-swatch" style="background-color: var(--bds-bg-surface);"></div>
+                                    <span class="bds-text--small bds-text--muted">--bds-bg-surface</span>
+                                </div>
+                                <div>
+                                    <div class="color-swatch" style="background-color: var(--bds-bg-well);"></div>
+                                    <span class="bds-text--small bds-text--muted">--bds-bg-well</span>
+                                </div>
+                                <div>
+                                    <div class="color-swatch" style="background-color: var(--bds-accent);"></div>
+                                    <span class="bds-text--small bds-text--muted">--bds-accent</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Typography -->
+                    <section id="typography" class="demo-section">
+                        <div class="bds-stack">
+                            <h2 class="bds-heading bds-heading--2">Typography</h2>
+                            <div class="bds-stack">
+                                <div>
+                                    <span class="demo-label">.bds-heading--1</span>
+                                    <h1 class="bds-heading bds-heading--1">Heading 1</h1>
+                                </div>
+                                <div>
+                                    <span class="demo-label">.bds-heading--2</span>
+                                    <h2 class="bds-heading bds-heading--2">Heading 2</h2>
+                                </div>
+                                <div>
+                                    <span class="demo-label">.bds-heading--3</span>
+                                    <h3 class="bds-heading bds-heading--3">Heading 3</h3>
+                                </div>
+                                <div>
+                                    <span class="demo-label">.bds-text--muted</span>
+                                    <p class="bds-text--muted">This is muted text used for secondary information.</p>
+                                </div>
+                                <div>
+                                    <span class="demo-label">.bds-text--small</span>
+                                    <p class="bds-text--small">This is small text for captions or legal copy.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Buttons -->
+                    <section id="buttons" class="demo-section">
+                        <div class="bds-stack">
+                            <h2 class="bds-heading bds-heading--2">Buttons</h2>
+                            <div class="bds-flex" style="flex-wrap: wrap;">
+                                <button class="bds-button bds-button--accent">Accent Button</button>
+                                <button class="bds-button bds-button--secondary">Secondary Button</button>
+                                <button class="bds-button bds-button--success">Success Button</button>
+                                <button class="bds-button bds-button--danger">Danger Button</button>
+                                <button class="bds-button bds-button--small bds-button--accent">Small Button</button>
+                                <button class="bds-button bds-button--text">Text Button</button>
+                                <button class="bds-button bds-button--accent" disabled>Disabled Button</button>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Cards -->
+                    <section id="cards" class="demo-section">
+                        <div class="bds-stack">
+                            <h2 class="bds-heading bds-heading--2">Cards</h2>
+                            <div class="bds-grid">
+                                <!-- Standard Card -->
+                                <div class="bds-card">
+                                    <div class="bds-card__thumbnail">
+                                        <div class="bds-card__badge bds-card__badge--accent">Featured</div>
+                                        <div style="background: linear-gradient(45deg, #333, #111); width: 100%; height: 100%;"></div>
+                                    </div>
+                                    <div class="bds-card__content">
+                                        <h3 class="bds-heading bds-heading--3">Standard Card</h3>
+                                        <p class="bds-text--small bds-text--muted">Standard card with thumbnail and badge.</p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Simple Card -->
+                                <div class="bds-card">
+                                    <div class="bds-card__content">
+                                        <h3 class="bds-heading bds-heading--3">Content Only</h3>
+                                        <p class="bds-text--small bds-text--muted">A simpler card without a thumbnail image.</p>
+                                        <div class="bds-flex bds-flex--between" style="margin-top: 1rem;">
+                                            <span class="bds-status bds-status--success">Active</span>
+                                            <button class="bds-button bds-button--text bds-button--small">View Details</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Well Card -->
+                                <div class="bds-card--well">
+                                    <div class="bds-stack--tight">
+                                        <h3 class="bds-heading bds-heading--3">Well Card</h3>
+                                        <p class="bds-text--muted">The well card uses a different background and more padding.</p>
+                                        <div class="bds-divider"></div>
+                                        <div class="bds-progress">
+                                            <div class="bds-progress__bar" style="width: 65%;"></div>
+                                        </div>
+                                        <div class="bds-flex bds-flex--between">
+                                            <span class="bds-text--small bds-text--muted">Progress</span>
+                                            <span class="bds-text--small">65%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Forms -->
+                    <section id="forms" class="demo-section">
+                        <div class="bds-stack">
+                            <h2 class="bds-heading bds-heading--2">Forms & Inputs</h2>
+                            <div class="bds-container--narrow">
+                                <div class="bds-card--well">
+                                    <div class="bds-stack">
+                                        <div class="bds-form-group">
+                                            <label class="bds-form-group__label">Email Address</label>
+                                            <input type="email" class="bds-form-group__input" placeholder="e.g. name@example.com">
+                                        </div>
+                                        <div class="bds-form-group">
+                                            <label class="bds-form-group__label">Password</label>
+                                            <input type="password" class="bds-form-group__input" placeholder="Enter your password">
+                                        </div>
+                                        <div class="bds-flex bds-flex--end">
+                                            <button class="bds-button bds-button--accent">Sign In</button>
+                                            <span class="bds-status bds-status--error bds-text--small">Error message example</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Layout Utilities -->
+                    <section id="utilities" class="demo-section">
+                        <div class="bds-stack">
+                            <h2 class="bds-heading bds-heading--2">Utilities</h2>
+                            <div class="bds-stack--tight">
+                                <span class="demo-label">.bds-stack--tight</span>
+                                <div class="bds-card--well" style="padding: 1rem;">Item 1</div>
+                                <div class="bds-card--well" style="padding: 1rem;">Item 2</div>
+                                <div class="bds-card--well" style="padding: 1rem;">Item 3</div>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>
