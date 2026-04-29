@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-bds-deep text-bds-text-main font-bds antialiased;
+  }
+}
+
+@layer components {
+  /* Recreating BDS core components as Tailwind components for easy migration */
+  
+  .bds-button {
+    @apply inline-flex items-center justify-center whitespace-nowrap px-6 py-3 rounded-bds-sm font-semibold transition-all duration-200 border border-transparent bg-none text-bds-text-main cursor-pointer;
+    @apply hover:opacity-90 disabled:opacity-30 disabled:cursor-not-allowed;
+  }
+
+  .bds-button-accent {
+    @apply bds-button bg-bds-accent text-black;
+  }
+
+  .bds-button-secondary {
+    @apply bds-button border-bds-border hover:bg-white/5 hover:border-bds-text-muted;
+  }
+
+  .bds-button-small {
+    @apply px-3 py-1.5 text-xs;
+  }
+
+  .bds-card {
+    @apply bg-bds-surface border border-bds-border rounded-bds-md overflow-hidden transition-all duration-200 flex flex-col text-inherit no-underline;
+    @apply hover:border-[#444] hover:bg-[#252525];
+  }
+
+  .bds-card-well {
+    @apply bg-bds-well p-6 rounded-bds-lg border border-bds-border;
+  }
+}
